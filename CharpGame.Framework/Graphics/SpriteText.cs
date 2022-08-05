@@ -20,7 +20,7 @@ namespace CharpGame.Framework.Graphics
         /// <summary>
         /// フォントのサイズ。
         /// </summary>
-        public int FontSize { get; set; } = 20;
+        public int FontSize { get; set; } = 30;
 
         /// <summary>
         /// フォントの太さ。
