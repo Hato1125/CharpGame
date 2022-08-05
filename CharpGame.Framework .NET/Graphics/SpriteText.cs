@@ -15,32 +15,27 @@ public class SpriteText : IDisposable
     /// <summary>
     /// フォント。
     /// </summary>
-    [DefaultValue("Meiryo")]
-    public string Font { get; set; }
+    public string Font { get; set; } = "Meiryo";
 
     /// <summary>
     /// フォントのサイズ。
     /// </summary>
-    [DefaultValue("20")]
-    public int FontSize { get; set; }
+    public int FontSize { get; set; } = 20;
 
     /// <summary>
     /// フォントの太さ。
     /// </summary>
-    [DefaultValue(0)]
-    public int FontThick { get; set; }
+    public int FontThick { get; set; } = 0;
 
     /// <summary>
     /// 透明度。
     /// </summary>
-    [DefaultValue(255)]
-    public int Opacity { get; set; }
+    public int Opacity { get; set; } = 255;
 
     /// <summary>
     /// フォントのタイプ
     /// </summary>
-    [DefaultValue(FontType.Antialiasing)]
-    public FontType fontType { get; set; }
+    public FontType fontType { get; set; } = FontType.Antialiasing;
 
     /// <summary>
     /// フォントの横幅。
