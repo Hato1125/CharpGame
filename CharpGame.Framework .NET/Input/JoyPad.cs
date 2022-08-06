@@ -129,7 +129,7 @@ public class JoyPad
     /// キーを押した瞬間を取得します。
     /// </summary>
     /// <param name="joyPadKey">JoyPadKey</param>
-    public bool GetKey(JoyPadKey joyPadKey) => _value[GetJoyPadKeyIndex(joyPadKey)] == 0;
+    public bool GetKey(JoyPadKey joyPadKey) => _value[GetJoyPadKeyIndex(joyPadKey)] == 1;
 
     /// <summary>
     /// キーを押している間を取得する。
