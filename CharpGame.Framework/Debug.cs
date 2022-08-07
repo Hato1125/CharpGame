@@ -1,19 +1,14 @@
 ﻿# if DEBUG
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CharpGame.Framework.Input;
 using CharpGame.Framework.Graphics;
+using CharpGame.Framework.Input;
 using DxLibDLL;
+using System;
 
 namespace CharpGame.Framework
 {
     internal class Debug
     {
         private static int count;
-        private static int left;
 
         [STAThread]
         static void Main()
@@ -25,6 +20,10 @@ namespace CharpGame.Framework
             DX.ChangeWindowMode(DX.TRUE);
             DX.SetBackgroundColor(255, 255, 255);
             DX.DxLib_Init();
+
+            SpriteText t = new SpriteText();
+            t.FontSize = 20;
+            t.CreateFontHandle();
 
             joyPad.joyPadType = JoyPadType.Key_Pad;
 
@@ -43,6 +42,11 @@ namespace CharpGame.Framework
                 {
                     count++;
                     Console.WriteLine($"Push:{count}");
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    t.Draw(0, i * t.FontHeight, $"Push{i}", 0x000000);
                 }
 
                 DX.ScreenFlip();

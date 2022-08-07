@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using DxLibDLL;
+﻿using DxLibDLL;
+using System;
 
 namespace CharpGame.Framework.Graphics
 {
@@ -15,27 +10,32 @@ namespace CharpGame.Framework.Graphics
         /// <summary>
         /// フォント。
         /// </summary>
-        public string Font { get; set; } = "Meiryo";
+        public string Font { get; set; }
 
         /// <summary>
         /// フォントのサイズ。
         /// </summary>
-        public int FontSize { get; set; } = 30;
+        public int FontSize { get; set; }
 
         /// <summary>
         /// フォントの太さ。
         /// </summary>
-        public int FontThick { get; set; } = 0;
+        public int FontThick { get; set; }
 
         /// <summary>
         /// 透明度。
         /// </summary>
-        public int Opacity { get; set; } = 255;
+        public int Opacity { get; set; }
+
+        /// <summary>
+        /// テキストを表示するか否か。
+        /// </summary>
+        public bool IsVisible { get; set; }
 
         /// <summary>
         /// フォントのタイプ
         /// </summary>
-        public FontType fontType { get; set; } = FontType.Antialiasing;
+        public FontType fontType { get; set; }
 
         /// <summary>
         /// フォントの横幅。
@@ -48,9 +48,27 @@ namespace CharpGame.Framework.Graphics
         public int FontHeight { get; private set; }
 
         /// <summary>
-        /// Textを生成する。
+        /// 初期化。
         /// </summary>
         public SpriteText()
+        {
+            Font = "ＭＳ ゴシック";
+            FontSize = 25;
+            FontThick = 0;
+            Opacity = 255;
+            IsVisible = true;
+            fontType = FontType.Antialiasing;
+        }
+
+        ~SpriteText()
+        {
+            Dispose();
+        }
+
+        /// <summary>
+        /// FontHandleを作成する。
+        /// </summary>
+        public void CreateFontHandle()
         {
             DX.SetFontCacheCharNum(400);
             _fontHandle = DX.CreateFontToHandle(Font,
@@ -58,11 +76,6 @@ namespace CharpGame.Framework.Graphics
                 FontThick,
                 (int)fontType);
             DX.SetFontCacheCharNum(0);
-        }
-
-        ~SpriteText()
-        {
-            Dispose();
         }
 
         /// <summary>
@@ -74,6 +87,8 @@ namespace CharpGame.Framework.Graphics
         /// <param name="color">色</param>
         public void Draw(float x, float y, string text, uint color)
         {
+            if (!IsVisible || _fontHandle == -1) return;
+
             // FontHandleのサイズを取得
             FontWidth = DX.GetDrawStringWidthToHandle(text, text.Length, _fontHandle);
             FontHeight = DX.GetFontSizeToHandle(_fontHandle);

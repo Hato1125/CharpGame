@@ -13,6 +13,11 @@ public class JoyPad
     public JoyPadType joyPadType { get; set; }
 
     /// <summary>
+    /// 初期化。
+    /// </summary>
+    public JoyPad() => joyPadType = JoyPadType.Key_Pad;
+
+    /// <summary>
     /// 更新処理。
     /// </summary>
     public void Update()
@@ -33,7 +38,6 @@ public class JoyPad
                 else
                     _value[i] = 0;
             }
-
         }
     }
 

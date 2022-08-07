@@ -12,7 +12,7 @@ public class Keyboard
     /// </summary>
     public void Update()
     {
-        _ = DX.GetHitKeyStateAll(_buffer);
+        DX.GetHitKeyStateAll(_buffer);
 
         for (int i = 0; i < 256; i++)
         {

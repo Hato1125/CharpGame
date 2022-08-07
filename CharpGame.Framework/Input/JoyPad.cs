@@ -13,6 +13,11 @@ namespace CharpGame.Framework.Input
         public JoyPadType joyPadType { get; set; }
 
         /// <summary>
+        /// 初期化。
+        /// </summary>
+        public JoyPad() => joyPadType = JoyPadType.Key_Pad;
+
+        /// <summary>
         /// 更新処理。
         /// </summary>
         public void Update()
@@ -33,7 +38,6 @@ namespace CharpGame.Framework.Input
                     else
                         _value[i] = 0;
                 }
-
             }
         }
 
