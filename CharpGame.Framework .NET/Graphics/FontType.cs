@@ -1,4 +1,4 @@
-﻿using static DxLibDLL.DX;
+﻿using static CharpGame.Framework.DxLib.DX;
 
 namespace CharpGame.Framework.Graphics;
 

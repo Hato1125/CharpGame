@@ -1,66 +1,64 @@
 ﻿# if DEBUG
 using CharpGame.Framework.Graphics;
 using CharpGame.Framework.Input;
-using DxLibDLL;
 using System;
 
 namespace CharpGame.Framework
 {
     internal class Debug
     {
-        private static int count;
-        private static GameWindow window = new GameWindow();
-
         [STAThread]
         static void Main()
         {
-            Keyboard key = new Keyboard();
-            Mouse mouse = new Mouse();
-            JoyPad joyPad = new JoyPad();
+            using (MainGame game = new MainGame())
+                game.Run();
+        }
+    }
 
+    internal class MainGame : Game
+    {
+        private Keyboard key = new Keyboard();
+        private Mouse mouse = new Mouse();
+        private JoyPad joyPad = new JoyPad();
+        private SpriteText t = new SpriteText();
+        private int count = 5;
 
-            window.WindowSize = new Size(1280, 720);
-            window.CreateWindow();
+        public MainGame()
+        {
+        }
 
-            SpriteText t = new SpriteText();
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+        }
+
+        protected override void Initialize()
+        {
             t.FontSize = 20;
             t.CreateFontHandle();
-
             joyPad.joyPadType = JoyPadType.Key_Pad;
 
-            while (true)
+            base.Initialize();
+        }
+
+        protected override void RunLoop(GameTime gameTime)
+        {
+            key.Update();
+            mouse.Update();
+            joyPad.Update();
+
+            if (joyPad.GetKeyUp(JoyPadKey.Down))
             {
-                if (DX.ProcessMessage() == -1)
-                    break;
-
-                DX.ClearDrawScreen();
-
-                Console.WriteLine(
-                    string.Format("{0} : {1}   {2} : {3}",
-                    window.WindowRect.Width,
-                    window.WindowRect.Heigth,
-                    window.WindowRect.X,
-                    window.WindowRect.Y));
-
-                key.Update();
-                mouse.Update();
-                joyPad.Update();
-
-                if (joyPad.GetKeyUp(JoyPadKey.Down))
-                {
-                    count++;
-                    Console.WriteLine($"Push:{count}");
-                }
-
-                for (int i = 0; i < count; i++)
-                {
-                    t.Draw(0, i * t.FontHeight, $"Push{i}", 0x000000);
-                }
-
-                DX.ScreenFlip();
+                count++;
+                Console.WriteLine($"Push:{count}");
             }
 
-            DX.DxLib_End();
+            base.RunLoop(gameTime);
+        }
+
+        protected override void UnloadContent()
+        {
+            base.UnloadContent();
         }
     }
 }

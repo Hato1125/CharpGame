@@ -1,11 +1,14 @@
-﻿using DxLibDLL;
+﻿using CharpGame.Framework.DxLib;
 using System;
 
 namespace CharpGame.Framework.Graphics
 {
     public class SpriteText : IDisposable
     {
-        private int _fontHandle { get; set; }
+        /// <summary>
+        /// フォントハンドル。
+        /// </summary>
+        public int FontHandle { get; private set; }
 
         /// <summary>
         /// フォント。
@@ -40,12 +43,29 @@ namespace CharpGame.Framework.Graphics
         /// <summary>
         /// フォントの横幅。
         /// </summary>
-        public int FontWidth { get; private set; }
+        public int FontWidth
+        {
+            get
+            {
+                if (_text != null)
+                    return DX.GetDrawStringWidthToHandle(_text, _text.Length, FontHandle);
+                else
+                    return 0;
+            }
+        }
 
         /// <summary>
         /// フォントの高さ。
         /// </summary>
-        public int FontHeight { get; private set; }
+        public int FontHeight
+        {
+            get
+            {
+                return DX.GetFontSizeToHandle(FontHandle);
+            }
+        }
+
+        private string _text;
 
         /// <summary>
         /// 初期化。
@@ -71,7 +91,7 @@ namespace CharpGame.Framework.Graphics
         public void CreateFontHandle()
         {
             DX.SetFontCacheCharNum(400);
-            _fontHandle = DX.CreateFontToHandle(Font,
+            FontHandle = DX.CreateFontToHandle(Font,
                 FontSize,
                 FontThick,
                 (int)fontType);
@@ -87,19 +107,16 @@ namespace CharpGame.Framework.Graphics
         /// <param name="color">色</param>
         public void Draw(float x, float y, string text, uint color)
         {
-            if (!IsVisible || _fontHandle == -1) return;
+            if (!IsVisible || FontHandle == -1) return;
 
-            // FontHandleのサイズを取得
-            FontWidth = DX.GetDrawStringWidthToHandle(text, text.Length, _fontHandle);
-            FontHeight = DX.GetFontSizeToHandle(_fontHandle);
-
+            _text = text;
             DX.SetDrawBlendMode(DX.DX_BLENDMODE_ALPHA, Opacity > 255 ? 255 : Opacity);
             DX.DrawStringFToHandle(
                 x,
                 y,
                 text,
                 color,
-                _fontHandle);
+                FontHandle);
             DX.SetDrawBlendMode(DX.DX_BLENDMODE_NOBLEND, 0);
         }
 
@@ -108,8 +125,8 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public void Dispose()
         {
-            if (_fontHandle != -1)
-                DX.DeleteFontToHandle(_fontHandle);
+            if (FontHandle != -1)
+                DX.DeleteFontToHandle(FontHandle);
         }
     }
 }

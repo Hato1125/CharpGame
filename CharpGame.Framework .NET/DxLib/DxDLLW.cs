@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace DxLibDLL;
+namespace CharpGame.Framework.DxLib;
 
 public static class DX
 {

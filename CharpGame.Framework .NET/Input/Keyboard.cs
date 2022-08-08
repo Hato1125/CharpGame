@@ -1,4 +1,4 @@
-﻿using DxLibDLL;
+﻿using CharpGame.Framework.DxLib;
 
 namespace CharpGame.Framework.Input;
 
