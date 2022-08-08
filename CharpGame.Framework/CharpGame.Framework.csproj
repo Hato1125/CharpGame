@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Debug.cs" />
     <Compile Include="DxDLLW.cs" />
+    <Compile Include="GameWindow.cs" />
     <Compile Include="Graphics\FontType.cs" />
     <Compile Include="Graphics\SpriteText.cs" />
     <Compile Include="Input\JoayPadKey.cs" />

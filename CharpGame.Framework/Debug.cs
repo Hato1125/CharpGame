@@ -9,6 +9,7 @@ namespace CharpGame.Framework
     internal class Debug
     {
         private static int count;
+        private static GameWindow window = new GameWindow();
 
         [STAThread]
         static void Main()
@@ -17,9 +18,9 @@ namespace CharpGame.Framework
             Mouse mouse = new Mouse();
             JoyPad joyPad = new JoyPad();
 
-            DX.ChangeWindowMode(DX.TRUE);
-            DX.SetBackgroundColor(255, 255, 255);
-            DX.DxLib_Init();
+
+            window.WindowSize = new Size(1280, 720);
+            window.CreateWindow();
 
             SpriteText t = new SpriteText();
             t.FontSize = 20;
@@ -33,6 +34,13 @@ namespace CharpGame.Framework
                     break;
 
                 DX.ClearDrawScreen();
+
+                Console.WriteLine(
+                    string.Format("{0} : {1}   {2} : {3}",
+                    window.WindowRect.Width,
+                    window.WindowRect.Heigth,
+                    window.WindowRect.X,
+                    window.WindowRect.Y));
 
                 key.Update();
                 mouse.Update();
