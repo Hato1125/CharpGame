@@ -149,6 +149,7 @@ namespace CharpGame.Framework
             DX.SetOutApplicationLogValidFlag(DX.TRUE);
 #endif
             DX.ChangeWindowMode(IsFullScreen ? DX.FALSE : DX.TRUE);
+            DX.SetWindowSizeChangeEnableFlag(IsUserReSizeing ? DX.TRUE : DX.FALSE, DX.TRUE);
             DX.SetAlwaysRunFlag(DX.TRUE);
             DX.DxLib_Init();
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);

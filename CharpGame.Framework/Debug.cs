@@ -29,6 +29,7 @@ namespace CharpGame.Framework
 
         public MainGame()
         {
+            Window.IsUserReSizeing = false;
         }
 
         protected override void LoadContent()
