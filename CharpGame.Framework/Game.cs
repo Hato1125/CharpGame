@@ -3,7 +3,7 @@ using System;
 
 namespace CharpGame.Framework
 {
-    internal abstract class Game : IDisposable
+    public abstract class Game : IDisposable
     {
         public GameWindow Window { get; set; }
         private GameTime _gameTime { get; set; }

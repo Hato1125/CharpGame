@@ -6,7 +6,7 @@ namespace CharpGame.Framework;
 /// <summary>
 /// Windowのサイズ・位置を格納する構造体。
 /// </summary>
-struct WindowRect
+public struct WindowRect
 {
     public int X;
     public int Y;
@@ -14,7 +14,7 @@ struct WindowRect
     public int Heigth;
 }
 
-internal class GameWindow
+public class GameWindow
 {
     /// <summary>
     /// ユーザーがWindowのサイズを変更できるかどうか。

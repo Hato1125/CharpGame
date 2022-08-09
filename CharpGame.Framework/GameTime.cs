@@ -3,7 +3,7 @@ using System;
 
 namespace CharpGame.Framework
 {
-    internal class GameTime
+    public class GameTime
     {
         /// <summary>
         /// Runメソッドを呼び出した時からの時間。
