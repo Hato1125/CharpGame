@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace CharpGame.Framework.Graphics;
 
-internal class Sprite : Texture2D, IDisposable
+public class Sprite : Texture2D, IDisposable
 {
     /// <summary>
     /// グラフィックハンドル。
