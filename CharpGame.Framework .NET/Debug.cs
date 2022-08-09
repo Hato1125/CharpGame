@@ -32,17 +32,12 @@ internal class MainGame : Game
 
     protected override void LoadContent()
     {
-        s = new Texture2D("Obje.png", Texture2DLoadType.Normal);
-        sp = new Sprite(s);
-        sp.Position = new System.Drawing.PointF(0, 0);
 
         base.LoadContent();
     }
 
     protected override void Initialize()
     {
-        t.FontSize = 20;
-        t.CreateFontHandle();
         joyPad.joyPadType = JoyPadType.Key_Pad;
 
         base.Initialize();
@@ -60,15 +55,11 @@ internal class MainGame : Game
             Console.WriteLine($"Push:{count}");
         }
 
-        DX.DrawGraphF(sp.Position.X, sp.Position.Y, sp.gHandle, DX.TRUE);
-
         base.RunLoop(gameTime);
     }
 
     protected override void UnloadContent()
     {
-        sp.Dispose();
-
         base.UnloadContent();
     }
 }

@@ -184,7 +184,6 @@ namespace CharpGame.Framework.Graphics
         public void Dispose()
         {
 #if DEBUG
-            Console.WriteLine($"[Texture2D] DisposeStooper:{_disposeStooper}");
             Debug.WriteLine($"[Texture2D] DisposeStooper:{_disposeStooper}");
 #endif
 
@@ -193,7 +192,6 @@ namespace CharpGame.Framework.Graphics
                 DX.DeleteSoftImage(SoftImageHandle);
 
 #if DEBUG
-                Console.WriteLine("[Texture2D] SoftImageHandleを破棄。");
                 Debug.WriteLine("[Texture2D] SoftImageHandleを破棄。");
 #endif
             }

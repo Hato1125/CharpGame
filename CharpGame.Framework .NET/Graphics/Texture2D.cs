@@ -183,7 +183,6 @@ public class Texture2D : IDisposable
     public void Dispose()
     {
 #if DEBUG
-        Console.WriteLine($"[Texture2D] DisposeStooper:{_disposeStooper}");
         Debug.WriteLine($"[Texture2D] DisposeStooper:{_disposeStooper}");
 #endif
 
@@ -192,7 +191,6 @@ public class Texture2D : IDisposable
             DX.DeleteSoftImage(SoftImageHandle);
 
 #if DEBUG
-            Console.WriteLine("[Texture2D] SoftImageHandleを破棄。");
             Debug.WriteLine("[Texture2D] SoftImageHandleを破棄。");
 #endif
         }

@@ -63,7 +63,6 @@ public class Sprite : IDisposable
     public void Dispose()
     {
 #if DEBUG
-        Console.WriteLine($"[Sprite] DisposeStooper:{_disposeStooper}");
         Debug.WriteLine($"[Sprite] DisposeStooper:{_disposeStooper}");
 #endif
 
@@ -72,7 +71,6 @@ public class Sprite : IDisposable
             DX.DeleteGraph(gHandle);
             _disposeStooper = true;
 #if DEBUG
-            Console.WriteLine("[Sprite] GraphHandleを破棄。");
             Debug.WriteLine("[Sprite] GraphHandleを破棄。");
 #endif
         }

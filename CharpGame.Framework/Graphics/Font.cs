@@ -132,7 +132,6 @@ namespace CharpGame.Framework.Graphics
         public void Dispose()
         {
 #if DEBUG
-            Console.WriteLine($"[FontHandle] DisposeStooper:{_disposeStooper}");
             Debug.WriteLine($"[FontHandle] DisposeStooper:{_disposeStooper}");
 #endif
 
@@ -140,7 +139,6 @@ namespace CharpGame.Framework.Graphics
                 DX.DeleteFontToHandle(FontHandle);
 
 #if DEBUG
-                Console.WriteLine("[FontHandle] FontHandleを破棄。");
                 Debug.WriteLine("[FontHandle] FontHandleを破棄。");
 #endif
             }

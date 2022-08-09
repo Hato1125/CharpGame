@@ -1,5 +1,9 @@
-﻿using CharpGame.Framework.DxLib;
-using System.Drawing;
+﻿using System.Drawing;
+using CharpGame.Framework.DxLib;
+
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace CharpGame.Framework;
 
@@ -48,25 +52,54 @@ public class GameWindow
     /// </summary>
     public Color BackgroundColor
     {
-        get { return BackgroundColor; }
+        get
+        {
+            DX.GetBackgroundColor(out int R, out int G, out int B, out int _);
+            return Color.FromArgb((byte)R, (byte)G, (byte)B);
+        }
         set { DX.SetBackgroundColor(value.R, value.G, value.B); }
     }
 
+    private Size _cliantSize { get; set; }
     /// <summary>
     /// クライアントサイズの取得、または設定をします。
     /// </summary>
     public Size CliantSize
     {
-        get { return CliantSize; }
-        set { DX.SetGraphMode(value.Width, value.Height, 32); }
+        get
+        {
+            return _cliantSize;
+        }
+        set
+        {
+            if (_cliantSize.Width != value.Width ||
+                _cliantSize.Height != value.Height)
+            {
+                DX.SetGraphMode(value.Width, value.Height, 32);
+                _cliantSize = new Size(value.Width, value.Height);
+            }
+        }
     }
 
+    private Size _windowSize { get; set; }
     /// <summary>
-    /// Windowサイズの設定をします。
+    /// Windowサイズの取得、または設定をします。
     /// </summary>
     public Size WindowSize
     {
-        set { DX.SetWindowSize(value.Width, value.Height); }
+        get
+        {
+            return _windowSize;
+        }
+        set
+        {
+            if (value.Width != _windowSize.Width ||
+                value.Height != _windowSize.Height)
+            {
+                DX.SetWindowSize(value.Width, value.Height);
+                _windowSize = new Size(value.Width, value.Height);
+            }
+        }
     }
 
     /// <summary>
@@ -98,6 +131,12 @@ public class GameWindow
         CliantSize = new Size(640, 480);
         WindowSize = new Size(640, 480);
         Title = "CharpGame";
+
+#if DEBUG
+        Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");
+        Debug.WriteLine($"WindowSize Width:{WindowSize.Width} Height:{WindowSize.Height}");
+        Debug.WriteLine($"BackgroundColor R:{BackgroundColor.R} G:{BackgroundColor.G} B:{BackgroundColor.B}");
+#endif
     }
 
     /// <summary>
@@ -106,6 +145,9 @@ public class GameWindow
     public void CreateWindow()
     {
         DX.SetOutApplicationLogValidFlag(DX.FALSE);
+#if DEBUG
+        DX.SetOutApplicationLogValidFlag(DX.TRUE);
+#endif
         DX.ChangeWindowMode(IsFullScreen ? DX.FALSE : DX.TRUE);
         DX.SetAlwaysRunFlag(DX.TRUE);
         DX.DxLib_Init();

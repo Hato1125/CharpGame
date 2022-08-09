@@ -64,7 +64,6 @@ namespace CharpGame.Framework.Graphics
         public void Dispose()
         {
 #if DEBUG
-            Console.WriteLine($"[Sprite] DisposeStooper:{_disposeStooper}");
             Debug.WriteLine($"[Sprite] DisposeStooper:{_disposeStooper}");
 #endif
 
@@ -73,7 +72,6 @@ namespace CharpGame.Framework.Graphics
                 DX.DeleteGraph(gHandle);
                 _disposeStooper = true;
 #if DEBUG
-                Console.WriteLine("[Sprite] GraphHandleを破棄。");
                 Debug.WriteLine("[Sprite] GraphHandleを破棄。");
 #endif
             }
