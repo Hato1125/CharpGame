@@ -125,6 +125,10 @@ namespace CharpGame.Framework
         /// </summary>
         public GameWindow()
         {
+            DX.SetOutApplicationLogValidFlag(DX.FALSE);
+#if DEBUG
+        DX.SetOutApplicationLogValidFlag(DX.TRUE);
+#endif
             IsUserReSizeing = false;
             IsFullScreen = false;
             BackgroundColor = Color.FromArgb(255, 255, 255);
@@ -144,10 +148,6 @@ namespace CharpGame.Framework
         /// </summary>
         public void CreateWindow()
         {
-            DX.SetOutApplicationLogValidFlag(DX.FALSE);
-#if DEBUG
-            DX.SetOutApplicationLogValidFlag(DX.TRUE);
-#endif
             DX.ChangeWindowMode(IsFullScreen ? DX.FALSE : DX.TRUE);
             DX.SetWindowSizeChangeEnableFlag(IsUserReSizeing ? DX.TRUE : DX.FALSE, DX.TRUE);
             DX.SetAlwaysRunFlag(DX.TRUE);
