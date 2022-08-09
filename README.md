@@ -1,13 +1,3 @@
-# CharpGame
-CharpGameには以下の機能があります。
-```cs
-Input    // (キー　マウス　JoyPad関連)
-Graphics // (画像管理　テキスト描画)
-```
-
-# 使い方
-工事中...
-
 # ライセンス
 ```
 libjpeg　Copyright (C) 1991-2013, Thomas G. Lane, Guido Vollbeding.
