@@ -46,15 +46,22 @@ namespace CharpGame.Framework.Graphics
         /// 初期化。
         /// </summary>
         /// <param name="texture">Texture2D</param>
-        public Sprite(Texture2D texture) =>
+        public Sprite(Texture2D texture)
+        {
+            SpriteSize = texture.TextureSize;
             gHandle = texture.ConvertGraphHandle();
+        }
 
         /// <summary>
         /// Spriteを生成。
         /// </summary>
         /// <param name="filePath">ファイルパス</param>
-        public Sprite(string filePath) => 
+        public Sprite(string filePath)
+        {
             gHandle = DX.LoadGraph(filePath);
+            DX.GetGraphSize(gHandle, out int width, out int height);
+            SpriteSize = new Size(width, height);
+        }
 
         ~Sprite() => Dispose();
 
