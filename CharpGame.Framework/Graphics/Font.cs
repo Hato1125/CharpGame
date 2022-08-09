@@ -1,12 +1,16 @@
-﻿using CharpGame.Framework.DxLib;
-using System;
+﻿using System;
+using CharpGame.Framework.DxLib;
+
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace CharpGame.Framework.Graphics
 {
     /// <summary>
     /// Textを描画する機能を提供します。
     /// </summary>
-    public class Text : IDisposable
+    public class Font : IDisposable
     {
         /// <summary>
         /// フォントハンドル。
@@ -16,7 +20,7 @@ namespace CharpGame.Framework.Graphics
         /// <summary>
         /// フォント。
         /// </summary>
-        public string Font { get; set; }
+        public string TextFont { get; set; }
 
         /// <summary>
         /// フォントのサイズ。
@@ -43,6 +47,7 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public FontType fontType { get; set; }
 
+        private string _text;
         /// <summary>
         /// フォントの横幅。
         /// </summary>
@@ -68,14 +73,14 @@ namespace CharpGame.Framework.Graphics
             }
         }
 
-        private string _text;
+        private bool _disposeStooper { get; set; }
 
         /// <summary>
         /// 初期化。
         /// </summary>
-        public Text()
+        public Font()
         {
-            Font = "ＭＳ ゴシック";
+            TextFont = "ＭＳ ゴシック";
             FontSize = 25;
             FontThick = 0;
             Opacity = 255;
@@ -83,10 +88,7 @@ namespace CharpGame.Framework.Graphics
             fontType = FontType.Antialiasing;
         }
 
-        ~Text()
-        {
-            Dispose();
-        }
+        ~Font() => Dispose();
 
         /// <summary>
         /// FontHandleを作成する。
@@ -94,7 +96,8 @@ namespace CharpGame.Framework.Graphics
         public void CreateFontHandle()
         {
             DX.SetFontCacheCharNum(400);
-            FontHandle = DX.CreateFontToHandle(Font,
+            FontHandle = DX.CreateFontToHandle(
+                TextFont,
                 FontSize,
                 FontThick,
                 (int)fontType);
@@ -128,8 +131,19 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public void Dispose()
         {
-            if (FontHandle != -1)
+#if DEBUG
+            Console.WriteLine($"[FontHandle] DisposeStooper:{_disposeStooper}");
+            Debug.WriteLine($"[FontHandle] DisposeStooper:{_disposeStooper}");
+#endif
+
+            if (FontHandle != -1) {
                 DX.DeleteFontToHandle(FontHandle);
+
+#if DEBUG
+                Console.WriteLine("[FontHandle] FontHandleを破棄。");
+                Debug.WriteLine("[FontHandle] FontHandleを破棄。");
+#endif
+            }
         }
     }
 }

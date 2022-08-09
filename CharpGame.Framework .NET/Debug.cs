@@ -1,10 +1,11 @@
 ﻿# if DEBUG
 using CharpGame.Framework.Graphics;
 using CharpGame.Framework.Input;
+using CharpGame.Framework.DxLib;
 
 namespace CharpGame.Framework;
 
-internal class Debug
+internal class Debugs
 {
     [STAThread]
     static void Main()
@@ -19,8 +20,9 @@ internal class MainGame : Game
     private Keyboard key = new Keyboard();
     private Mouse mouse = new Mouse();
     private JoyPad joyPad = new JoyPad();
-    private Text t = new Text();
+    private Font t = new Font();
     private Texture2D s;
+    private Sprite sp;
     private int g;
     private int count = 5;
 
@@ -30,6 +32,10 @@ internal class MainGame : Game
 
     protected override void LoadContent()
     {
+        s = new Texture2D("Obje.png", Texture2DLoadType.Normal);
+        sp = new Sprite(s);
+        sp.Position = new System.Drawing.PointF(0, 0);
+
         base.LoadContent();
     }
 
@@ -54,11 +60,15 @@ internal class MainGame : Game
             Console.WriteLine($"Push:{count}");
         }
 
+        DX.DrawGraphF(sp.Position.X, sp.Position.Y, sp.gHandle, DX.TRUE);
+
         base.RunLoop(gameTime);
     }
 
     protected override void UnloadContent()
     {
+        sp.Dispose();
+
         base.UnloadContent();
     }
 }

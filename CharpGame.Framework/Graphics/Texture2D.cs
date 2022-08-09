@@ -2,6 +2,10 @@
 using System;
 using System.Drawing;
 
+#if DEBUG
+using System.Diagnostics;
+#endif
+
 namespace CharpGame.Framework.Graphics
 {
     /// <summary>
@@ -58,6 +62,8 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public PixelColor[] TexturePixelColor { get; set; }
 
+        private bool _disposeStooper { get; set; }
+
         /// <summary>
         /// 初期化。
         /// </summary>
@@ -86,6 +92,8 @@ namespace CharpGame.Framework.Graphics
             TexturePixelColor = GetPixels();
             TextureColor = Color.FromArgb(0, 0, 0);
         }
+
+        ~Texture2D() => Dispose();
 
         /// <summary>
         /// テクスチャから１ピクセルの色を取得する。
@@ -175,8 +183,20 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public void Dispose()
         {
-            if (SoftImageHandle != -1)
+#if DEBUG
+            Console.WriteLine($"[Texture2D] DisposeStooper:{_disposeStooper}");
+            Debug.WriteLine($"[Texture2D] DisposeStooper:{_disposeStooper}");
+#endif
+
+            if (SoftImageHandle != -1 && !_disposeStooper)
+            {
                 DX.DeleteSoftImage(SoftImageHandle);
+
+#if DEBUG
+                Console.WriteLine("[Texture2D] SoftImageHandleを破棄。");
+                Debug.WriteLine("[Texture2D] SoftImageHandleを破棄。");
+#endif
+            }
         }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using CharpGame.Framework.DxLib;
 using System.Drawing;
 
+#if DEBUG
+using System.Diagnostics;
+#endif
+
 namespace CharpGame.Framework.Graphics;
 
-public class Sprite : Texture2D, IDisposable
+public class Sprite : IDisposable
 {
     /// <summary>
     /// グラフィックハンドル。
@@ -35,28 +39,42 @@ public class Sprite : Texture2D, IDisposable
     /// </summary>
     public Size SpriteSize { get; private set; }
 
+    private bool _disposeStooper { get; set; }
+
     /// <summary>
     /// 初期化。
     /// </summary>
-    /// <param name="fileName">画像のパス</param>
-    public Sprite(string fileName) : base(fileName, Texture2DLoadType.Normal)
-    {
-        SpriteSize = new Size(TextureSize.Width, TextureSize.Height);
-        gHandle = ConvertGraphHandle();
+    /// <param name="texture">Texture2D</param>
+    public Sprite(Texture2D texture) =>
+        gHandle = texture.ConvertGraphHandle();
 
-        if (gHandle == -1)
-            throw new Exception("Spriteの読み込みに失敗しました。");
-    }
+    /// <summary>
+    /// Spriteを生成。
+    /// </summary>
+    /// <param name="filePath">ファイルパス</param>
+    public Sprite(string filePath) =>
+        gHandle = DX.LoadGraph(filePath);
 
     ~Sprite() => Dispose();
 
     /// <summary>
-    /// グラフィックハンドルを破棄する。
+    /// 開放。
     /// </summary>
-    public new void Dispose()
+    public void Dispose()
     {
-        Dispose();
-        if (gHandle != -1)
+#if DEBUG
+        Console.WriteLine($"[Sprite] DisposeStooper:{_disposeStooper}");
+        Debug.WriteLine($"[Sprite] DisposeStooper:{_disposeStooper}");
+#endif
+
+        if (gHandle != -1 && !_disposeStooper)
+        {
             DX.DeleteGraph(gHandle);
+            _disposeStooper = true;
+#if DEBUG
+            Console.WriteLine("[Sprite] GraphHandleを破棄。");
+            Debug.WriteLine("[Sprite] GraphHandleを破棄。");
+#endif
+        }
     }
 }

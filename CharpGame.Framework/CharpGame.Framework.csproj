@@ -53,7 +53,7 @@
     <Compile Include="Graphics\FontType.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Graphics\Texture2DLoadType.cs" />
-    <Compile Include="Graphics\Text.cs" />
+    <Compile Include="Graphics\Font.cs" />
     <Compile Include="Graphics\Texture2D.cs" />
     <Compile Include="Input\JoayPadKey.cs" />
     <Compile Include="Input\JoyPad.cs" />
