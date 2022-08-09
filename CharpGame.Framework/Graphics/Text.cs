@@ -3,7 +3,10 @@ using System;
 
 namespace CharpGame.Framework.Graphics
 {
-    public class SpriteText : IDisposable
+    /// <summary>
+    /// Textを描画する機能を提供します。
+    /// </summary>
+    public class Text : IDisposable
     {
         /// <summary>
         /// フォントハンドル。
@@ -70,7 +73,7 @@ namespace CharpGame.Framework.Graphics
         /// <summary>
         /// 初期化。
         /// </summary>
-        public SpriteText()
+        public Text()
         {
             Font = "ＭＳ ゴシック";
             FontSize = 25;
@@ -80,7 +83,7 @@ namespace CharpGame.Framework.Graphics
             fontType = FontType.Antialiasing;
         }
 
-        ~SpriteText()
+        ~Text()
         {
             Dispose();
         }

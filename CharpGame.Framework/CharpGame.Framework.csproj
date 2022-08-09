@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,7 +51,10 @@
     <Compile Include="GameTime.cs" />
     <Compile Include="GameWindow.cs" />
     <Compile Include="Graphics\FontType.cs" />
-    <Compile Include="Graphics\SpriteText.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
+    <Compile Include="Graphics\Texture2DLoadType.cs" />
+    <Compile Include="Graphics\Text.cs" />
+    <Compile Include="Graphics\Texture2D.cs" />
     <Compile Include="Input\JoayPadKey.cs" />
     <Compile Include="Input\JoyPad.cs" />
     <Compile Include="Input\JoyPadType.cs" />

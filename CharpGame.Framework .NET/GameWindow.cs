@@ -1,4 +1,5 @@
 ﻿using CharpGame.Framework.DxLib;
+using System.Drawing;
 
 namespace CharpGame.Framework;
 
@@ -11,39 +12,6 @@ struct WindowRect
     public int Y;
     public int Width;
     public int Heigth;
-}
-
-/// <summary>
-/// サイズを格納する構造体。
-/// </summary>
-struct Size
-{
-    public Size(int Width, int Height)
-    {
-        this.Width = Width;
-        this.Height = Height;
-    }
-
-    public int Width;
-    public int Height;
-}
-
-/// <summary>
-/// 色を格納する構造体。
-/// RGB
-/// </summary>
-struct Color
-{
-    public Color(byte R, byte G, byte B)
-    {
-        this.R = R;
-        this.G = G;
-        this.B = B;
-    }
-
-    public byte R;
-    public byte G;
-    public byte B;
 }
 
 internal class GameWindow
@@ -126,7 +94,7 @@ internal class GameWindow
     {
         IsUserReSizeing = false;
         IsFullScreen = false;
-        BackgroundColor = new Color(255, 255, 255);
+        BackgroundColor = Color.FromArgb(255, 255, 255);
         CliantSize = new Size(640, 480);
         WindowSize = new Size(640, 480);
         Title = "CharpGame";
@@ -139,6 +107,7 @@ internal class GameWindow
     {
         DX.SetOutApplicationLogValidFlag(DX.FALSE);
         DX.ChangeWindowMode(IsFullScreen ? DX.FALSE : DX.TRUE);
+        DX.SetAlwaysRunFlag(DX.TRUE);
         DX.DxLib_Init();
         DX.SetDrawScreen(DX.DX_SCREEN_BACK);
     }

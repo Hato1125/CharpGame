@@ -20,7 +20,9 @@ namespace CharpGame.Framework
         private Keyboard key = new Keyboard();
         private Mouse mouse = new Mouse();
         private JoyPad joyPad = new JoyPad();
-        private SpriteText t = new SpriteText();
+        private Text t = new Text();
+        private Texture2D s;
+        private int g;
         private int count = 5;
 
         public MainGame()
