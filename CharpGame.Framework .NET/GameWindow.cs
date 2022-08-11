@@ -121,33 +121,23 @@ public class GameWindow
     }
 
     /// <summary>
-    /// 初期化。
-    /// </summary>
-    public GameWindow()
-    {
-        DX.SetOutApplicationLogValidFlag(DX.FALSE);
-#if DEBUG
-        DX.SetOutApplicationLogValidFlag(DX.TRUE);
-#endif
-        IsUserReSizeing = false;
-        IsFullScreen = false;
-        BackgroundColor = Color.FromArgb(255, 255, 255);
-        CliantSize = new Size(640, 480);
-        WindowSize = new Size(640, 480);
-        Title = "CharpGame";
-
-#if DEBUG
-        Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");
-        Debug.WriteLine($"WindowSize Width:{WindowSize.Width} Height:{WindowSize.Height}");
-        Debug.WriteLine($"BackgroundColor R:{BackgroundColor.R} G:{BackgroundColor.G} B:{BackgroundColor.B}");
-#endif
-    }
-
-    /// <summary>
     /// Windowを生成する。
     /// </summary>
     public void CreateWindow()
     {
+        DX.SetOutApplicationLogValidFlag(DX.FALSE);
+#if DEBUG
+            DX.SetOutApplicationLogValidFlag(DX.TRUE);
+#endif
+        IsUserReSizeing = false;
+        IsFullScreen = false;
+        Title = "CharpGame";
+
+#if DEBUG
+            Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");
+            Debug.WriteLine($"WindowSize Width:{WindowSize.Width} Height:{WindowSize.Height}");
+            Debug.WriteLine($"BackgroundColor R:{BackgroundColor.R} G:{BackgroundColor.G} B:{BackgroundColor.B}");
+#endif
         DX.ChangeWindowMode(IsFullScreen ? DX.FALSE : DX.TRUE);
         DX.SetWindowSizeChangeEnableFlag(IsUserReSizeing ? DX.TRUE : DX.FALSE, DX.TRUE);
         DX.SetAlwaysRunFlag(DX.TRUE);
