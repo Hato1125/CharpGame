@@ -4,8 +4,8 @@ namespace CharpGame.Framework;
 
 public abstract class Game : IDisposable
 {
-    public GameWindow Window { get; set; }
-    private GameTime _gameTime { get; set; }
+    public GameWindow? Window { get; set; }
+    private GameTime? _gameTime { get; set; }
     private bool _initializer = false;
     private bool _isExit = false;
 
@@ -95,7 +95,7 @@ public abstract class Game : IDisposable
     /// </summary>
     public void Run()
     {
-        Window.CreateWindow();
+        Window?.CreateWindow();
 
         if (!_initializer)
             Initialize();

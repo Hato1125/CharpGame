@@ -20,14 +20,11 @@ internal class MainGame : Game
     private Keyboard key = new Keyboard();
     private Mouse mouse = new Mouse();
     private JoyPad joyPad = new JoyPad();
-    private Font t = new Font();
-    private Texture2D s;
-    private Sprite sp;
-    private int g;
     private int count = 5;
 
     public MainGame()
     {
+        Window.IsUserReSizeing = true;
     }
 
     protected override void LoadContent()

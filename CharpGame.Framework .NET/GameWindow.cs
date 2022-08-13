@@ -20,17 +20,29 @@ public struct WindowRect
 
 public class GameWindow
 {
+    private bool _isUserReSizeing { get; set; }
     /// <summary>
     /// ユーザーがWindowのサイズを変更できるかどうか。
     /// </summary>
-    public bool IsUserReSizeing { get; set; }
+    public bool IsUserReSizeing
+    {
+        get { return _isUserReSizeing; }
+        set
+        {
+            if (value != _isUserReSizeing)
+            {
+                _isUserReSizeing = value;
+                DX.SetWindowSizeChangeEnableFlag(value ? DX.TRUE : DX.FALSE, DX.TRUE);
+            }
+        }
+    }
 
     /// <summary>
     /// フルスクリーンか否か。
     /// </summary>
     public bool IsFullScreen { get; set; }
 
-    private string _title;
+    private string? _title;
     /// <summary>
     /// windowのタイトルの取得、または設定をします。
     /// </summary>
@@ -121,6 +133,16 @@ public class GameWindow
     }
 
     /// <summary>
+    /// 初期化
+    /// </summary>
+    public GameWindow()
+    {
+        IsUserReSizeing = false;
+        IsFullScreen = false;
+        Title = "CharpGame";
+    }
+
+    /// <summary>
     /// Windowを生成する。
     /// </summary>
     public void CreateWindow()
@@ -129,9 +151,6 @@ public class GameWindow
 #if DEBUG
             DX.SetOutApplicationLogValidFlag(DX.TRUE);
 #endif
-        IsUserReSizeing = false;
-        IsFullScreen = false;
-        Title = "CharpGame";
 
 #if DEBUG
             Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");

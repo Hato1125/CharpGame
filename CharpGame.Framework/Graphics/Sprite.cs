@@ -20,6 +20,31 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public PointF Position { get; set; }
 
+        private int _opacity;
+        /// <summary>
+        /// 透明度、
+        /// </summary>
+        public int Opacity
+        {
+            get
+            {
+                return _opacity;
+            }
+            set
+            {
+                if (Opacity > 255)
+                {
+                    Opacity = 255;
+                    _opacity = 255;
+                }
+                else
+                {
+                    Opacity = value;
+                    _opacity = value;
+                }
+            }
+        }
+
         /// <summary>
         /// 横方向の拡大率。
         /// </summary>
@@ -36,6 +61,11 @@ namespace CharpGame.Framework.Graphics
         public float Rotation { get; set; }
 
         /// <summary>
+        /// 表示するか否か。
+        /// </summary>
+        public bool Visible { get; set; }
+
+        /// <summary>
         /// Textureサイズ。
         /// </summary>
         public Size SpriteSize { get; private set; }
@@ -50,6 +80,9 @@ namespace CharpGame.Framework.Graphics
         {
             SpriteSize = texture.TextureSize;
             gHandle = texture.ConvertGraphHandle();
+
+            Opacity = 255;
+            Visible = true;
         }
 
         /// <summary>
@@ -61,6 +94,9 @@ namespace CharpGame.Framework.Graphics
             gHandle = DX.LoadGraph(filePath);
             DX.GetGraphSize(gHandle, out int width, out int height);
             SpriteSize = new Size(width, height);
+
+            Opacity = 255;
+            Visible = true;
         }
 
         ~Sprite() => Dispose();

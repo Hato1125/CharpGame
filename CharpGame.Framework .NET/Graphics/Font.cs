@@ -46,7 +46,7 @@ public class Font : IDisposable
     /// </summary>
     public FontType fontType { get; set; }
 
-    private string _text;
+    private string? _text;
     /// <summary>
     /// フォントの横幅。
     /// </summary>

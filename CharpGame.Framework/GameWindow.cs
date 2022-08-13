@@ -121,6 +121,16 @@ namespace CharpGame.Framework
         }
 
         /// <summary>
+        /// 初期化
+        /// </summary>
+        public GameWindow()
+        {
+            IsUserReSizeing = false;
+            IsFullScreen = false;
+            Title = "CharpGame";
+        }
+
+        /// <summary>
         /// Windowを生成する。
         /// </summary>
         public void CreateWindow()
@@ -129,9 +139,6 @@ namespace CharpGame.Framework
 #if DEBUG
             DX.SetOutApplicationLogValidFlag(DX.TRUE);
 #endif
-            IsUserReSizeing = false;
-            IsFullScreen = false;
-            Title = "CharpGame";
 
 #if DEBUG
             Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");

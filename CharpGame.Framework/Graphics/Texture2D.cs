@@ -34,10 +34,30 @@ namespace CharpGame.Framework.Graphics
         /// </summary>
         public int SoftImageHandle { get; private set; }
 
+        private int _opacity;
         /// <summary>
-        /// 透明度。
+        /// 透明度、
         /// </summary>
-        public int Opacity { get; set; }
+        public int Opacity
+        {
+            get
+            {
+                return _opacity;
+            }
+            set
+            {
+                if (Opacity > 255)
+                {
+                    Opacity = 255;
+                    _opacity = 255;
+                }
+                else
+                {
+                    Opacity = value;
+                    _opacity = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Textureサイズ。
