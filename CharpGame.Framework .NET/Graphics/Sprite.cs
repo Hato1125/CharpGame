@@ -31,14 +31,13 @@ public class Sprite : IDisposable
         }
         set
         {
-            if (Opacity > 255)
+            if (value > 255)
             {
                 Opacity = 255;
                 _opacity = 255;
             }
             else
             {
-                Opacity = value;
                 _opacity = value;
             }
         }
