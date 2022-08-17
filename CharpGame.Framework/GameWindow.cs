@@ -125,6 +125,10 @@ namespace CharpGame.Framework
         /// </summary>
         public GameWindow()
         {
+            DX.SetOutApplicationLogValidFlag(DX.FALSE);
+#if DEBUG
+            DX.SetOutApplicationLogValidFlag(DX.TRUE);
+#endif
             IsUserReSizeing = false;
             IsFullScreen = false;
             Title = "CharpGame";
@@ -135,11 +139,6 @@ namespace CharpGame.Framework
         /// </summary>
         public void CreateWindow()
         {
-            DX.SetOutApplicationLogValidFlag(DX.FALSE);
-#if DEBUG
-            DX.SetOutApplicationLogValidFlag(DX.TRUE);
-#endif
-
 #if DEBUG
             Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");
             Debug.WriteLine($"WindowSize Width:{WindowSize.Width} Height:{WindowSize.Height}");

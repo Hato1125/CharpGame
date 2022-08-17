@@ -135,7 +135,8 @@ namespace CharpGame.Framework.Graphics
             Debug.WriteLine($"[FontHandle] DisposeStooper:{_disposeStooper}");
 #endif
 
-            if (FontHandle != -1) {
+            if (FontHandle != -1)
+            {
                 DX.DeleteFontToHandle(FontHandle);
 
 #if DEBUG

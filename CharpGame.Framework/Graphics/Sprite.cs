@@ -98,6 +98,20 @@ namespace CharpGame.Framework.Graphics
             Visible = true;
         }
 
+        /// <summary>
+        /// Spriteを生成。
+        /// </summary>
+        /// <param name="filePath">ファイルパス</param>
+        public Sprite(int gHandle)
+        {
+            this.gHandle = gHandle;
+            DX.GetGraphSize(gHandle, out int width, out int height);
+            SpriteSize = new Size(width, height);
+
+            Opacity = 255;
+            Visible = true;
+        }
+
         ~Sprite() => Dispose();
 
         /// <summary>

@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using CharpGame.Framework.DxLib;
+﻿using CharpGame.Framework.DxLib;
+using System.Drawing;
 
 #if DEBUG
 using System.Diagnostics;
@@ -137,6 +137,10 @@ public class GameWindow
     /// </summary>
     public GameWindow()
     {
+        DX.SetOutApplicationLogValidFlag(DX.FALSE);
+#if DEBUG
+        DX.SetOutApplicationLogValidFlag(DX.TRUE);
+#endif
         IsUserReSizeing = false;
         IsFullScreen = false;
         Title = "CharpGame";
@@ -147,11 +151,6 @@ public class GameWindow
     /// </summary>
     public void CreateWindow()
     {
-        DX.SetOutApplicationLogValidFlag(DX.FALSE);
-#if DEBUG
-            DX.SetOutApplicationLogValidFlag(DX.TRUE);
-#endif
-
 #if DEBUG
             Debug.WriteLine($"CliantSize Width:{CliantSize.Width} Height:{CliantSize.Height}");
             Debug.WriteLine($"WindowSize Width:{WindowSize.Width} Height:{WindowSize.Height}");

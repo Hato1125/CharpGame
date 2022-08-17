@@ -1,7 +1,7 @@
 ﻿# if DEBUG
+using CharpGame.Framework.DxLib;
 using CharpGame.Framework.Graphics;
 using CharpGame.Framework.Input;
-using CharpGame.Framework.DxLib;
 using System;
 
 namespace CharpGame.Framework
@@ -22,6 +22,8 @@ namespace CharpGame.Framework
         private Mouse mouse = new Mouse();
         private JoyPad joyPad = new JoyPad();
         private int count = 5;
+        private Sprite s;
+        private VirtualScreen vvv = new VirtualScreen(120, 120);
 
         public MainGame()
         {
@@ -30,7 +32,7 @@ namespace CharpGame.Framework
 
         protected override void LoadContent()
         {
-
+            s = new Sprite(@"C:\Users\hatof\Desktop\CharpGame\CharpGame.Framework\bin\Debug\a.png");
             base.LoadContent();
         }
 
@@ -52,6 +54,10 @@ namespace CharpGame.Framework
                 count++;
                 Console.WriteLine($"Push:{count}");
             }
+
+            vvv.SetSprite(s);
+            //Console.WriteLine(s.gHandle);
+            DX.DrawExtendGraph(0, 0, 100, 480, vvv.Screen.gHandle, DX.FALSE);
 
             base.RunLoop(gameTime);
         }
