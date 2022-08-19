@@ -63,10 +63,10 @@ public abstract class Game : IDisposable
     }
 
     /// <summary>
-    /// ゲームループ。
+    /// 更新。
     /// </summary>
     /// <param name="gameTime">ゲームタイマー</param>
-    protected virtual void RunLoop(GameTime gameTime)
+    protected virtual void Update(GameTime gameTime)
     {
     }
 
@@ -111,7 +111,7 @@ public abstract class Game : IDisposable
             }
 
             DX.ClearDrawScreen();
-            RunLoop(_gameTime);
+            Update(_gameTime);
             DX.ScreenFlip();
             _gameTime.Measurement();
         }

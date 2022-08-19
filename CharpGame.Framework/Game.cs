@@ -64,10 +64,10 @@ namespace CharpGame.Framework
         }
 
         /// <summary>
-        /// ゲームループ。
+        /// 更新。
         /// </summary>
         /// <param name="gameTime">ゲームタイマー</param>
-        protected virtual void RunLoop(GameTime gameTime)
+        protected virtual void Update(GameTime gameTime)
         {
         }
 
@@ -112,7 +112,7 @@ namespace CharpGame.Framework
                 }
 
                 DX.ClearDrawScreen();
-                RunLoop(_gameTime);
+                Update(_gameTime);
                 DX.ScreenFlip();
                 _gameTime.Measurement();
             }
