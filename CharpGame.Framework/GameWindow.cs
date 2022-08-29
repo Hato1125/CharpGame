@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using CharpGame.Framework.DxLib;
+﻿using CharpGame.Framework.DxLib;
+using System.Drawing;
 
 #if DEBUG
 using System.Diagnostics;

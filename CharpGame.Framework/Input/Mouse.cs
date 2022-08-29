@@ -7,10 +7,24 @@ namespace CharpGame.Framework.Input
         private readonly int[] _value = new int[10];
 
         /// <summary>
+        /// マウスのX座標。
+        /// </summary>
+        public int X { get; private set; }
+
+        /// <summary>
+        /// マウスのY座標。
+        /// </summary>
+        public int Y { get; private set; }
+
+        /// <summary>
         /// 更新処理。
         /// </summary>
         public void Update()
         {
+            DX.GetMousePoint(out int mx, out int my);
+            X = mx;
+            Y = my;
+
             for (int i = 0; i < 8; i++)
             {
                 if (DX.GetMouseInput() == (int)GetMouseKey(i))

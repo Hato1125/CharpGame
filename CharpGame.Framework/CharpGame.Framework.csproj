@@ -53,6 +53,7 @@
     <Compile Include="GameTime.cs" />
     <Compile Include="GameWindow.cs" />
     <Compile Include="Graphics\FontType.cs" />
+    <Compile Include="Graphics\MultipleSprite.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Graphics\Texture2DLoadType.cs" />
     <Compile Include="Graphics\Font.cs" />

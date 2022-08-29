@@ -27,6 +27,13 @@ namespace CharpGame.Framework
         }
 
         /// <summary>
+        /// DxLibの初期化が行われる前に呼び出される
+        /// </summary>
+        protected virtual void BeginDxLibInit()
+        {
+        }
+
+        /// <summary>
         /// <see cref="Initialize()"/>の後に<see cref="RunLoop(GameTime)"/>の前に呼び出されます。
         /// </summary>
         protected virtual void BeginRun()

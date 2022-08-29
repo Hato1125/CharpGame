@@ -22,6 +22,7 @@ internal class MainGame : Game
     private JoyPad joyPad = new JoyPad();
     private int count = 5;
     public Font f = new Font();
+    private int j;
 
     public MainGame()
     {
@@ -30,7 +31,6 @@ internal class MainGame : Game
 
     protected override void LoadContent()
     {
-
         base.LoadContent();
     }
 
@@ -42,7 +42,7 @@ internal class MainGame : Game
         base.Initialize();
     }
 
-    protected override void RunLoop(GameTime gameTime)
+    protected override void Update(GameTime gameTime)
     {
         key.Update();
         mouse.Update();
@@ -55,9 +55,8 @@ internal class MainGame : Game
         }
 
         f.Draw(0, 0, string.Format("DeltaTime:{0}", gameTime.DeltaTime), 0xffffff);
-        //DX.DrawString(0, 0, string.Format("DeltaTime:{0}", gameTime.DeltaTime), 0xffffff);
 
-        base.RunLoop(gameTime);
+        base.Update(gameTime);
     }
 
     protected override void UnloadContent()
